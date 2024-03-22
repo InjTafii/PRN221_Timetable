@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ProjectScheduleManagement.Models;
+using TimeTable_Project.Models;
 
-namespace ProjectScheduleManagement.Service
+namespace TimeTable_Project.Service
 {
     public class ValidationService
     {

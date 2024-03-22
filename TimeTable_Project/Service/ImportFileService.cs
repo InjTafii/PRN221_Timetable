@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ProjectScheduleManagement.DTO.File;
-using ProjectScheduleManagement.Models;
+using TimeTable_Project.DTO.File;
+using TimeTable_Project.Models;
 
-namespace ProjectScheduleManagement.Service
+namespace TimeTable_Project.Service
 {
     public class ImportFileService
     {
@@ -20,7 +20,7 @@ namespace ProjectScheduleManagement.Service
             string roomCode = roomParts[1];
             if (_context.Teachers.FirstOrDefault(t => t.Code == data.Teacher) == null) return 1;
             if (_context.Subjects.FirstOrDefault(t => t.Code == data.Subject) == null) return 2;
-            if (_context.GrClasses.FirstOrDefault(t => t.Code == data.Class) == null) return 3;
+            if (_context.Classes.FirstOrDefault(t => t.Code == data.Class) == null) return 3;
             if (_context.Buildings.FirstOrDefault(t => t.Code == buildingCode) == null) return 4;
             if (_context.Rooms.Include(t => t.Building).FirstOrDefault(t => t.Building.Code == buildingCode
             && t.Code == roomCode) == null) return 4;
@@ -43,7 +43,7 @@ namespace ProjectScheduleManagement.Service
                                              .FirstOrDefault(r => r.Building.Code == buildingCode && r.Code == roomCode).Id;
 
             Schedule1.SubjectId = _context.Subjects.FirstOrDefault(s => s.Code == data.Subject).Id;
-            Schedule1.ClassId = _context.GrClasses.FirstOrDefault(c => c.Code == data.Class).Id;
+            Schedule1.ClassId = _context.Classes.FirstOrDefault(c => c.Code == data.Class).Id;
             Schedule1.SlotId = _context.Slots.FirstOrDefault(s => s.SlotName == data.TimeSlot).Id;
 
             return Schedule1;

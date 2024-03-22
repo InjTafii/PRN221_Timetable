@@ -1,9 +1,9 @@
 ﻿using CsvHelper;
-using ProjectScheduleManagement.DTO.File;
-using ProjectScheduleManagement.Mapping;
+using TimeTable_Project.DTO.File;
+using TimeTable_Project.Mapping;
 using System.Globalization;
 
-namespace ProjectScheduleManagement.Service
+namespace TimeTable_Project.Service
 {
     public class FileUploadService
     {
