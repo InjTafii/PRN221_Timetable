@@ -18,6 +18,26 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\ADMIN\OneDrive\Desktop\TimeTable_Project\TimeTable_Project
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/ADMIN/OneDrive/Desktop/TimeTable_Project/TimeTable_Project/Pages/Building/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQnVpbGRpbmdcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/OneDrive/Desktop/TimeTable_Project/TimeTable_Project/Pages/Building/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQnVpbGRpbmdcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/OneDrive/Desktop/TimeTable_Project/TimeTable_Project/Pages/Building/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQnVpbGRpbmdcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/OneDrive/Desktop/TimeTable_Project/TimeTable_Project/Pages/Building/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQnVpbGRpbmdcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/OneDrive/Desktop/TimeTable_Project/TimeTable_Project/Pages/Building/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQnVpbGRpbmdcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/ADMIN/OneDrive/Desktop/TimeTable_Project/TimeTable_Project/Pages/Class/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xhc3NcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -72,6 +92,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/ADMIN/OneDrive/Desktop/TimeTable_Project/TimeTable_Project/Pages/Room/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUm9vbVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/OneDrive/Desktop/TimeTable_Project/TimeTable_Project/Pages/Schedule/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2NoZWR1bGVcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/OneDrive/Desktop/TimeTable_Project/TimeTable_Project/Pages/Schedule/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2NoZWR1bGVcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/ADMIN/OneDrive/Desktop/TimeTable_Project/TimeTable_Project/Pages/Shared/_ValidationScriptsPartial.cshtml]
