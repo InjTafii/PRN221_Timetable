@@ -23,9 +23,6 @@ namespace TimeTable_Project.Service
                 Directory.CreateDirectory(pathDirectory);
             }
 
-
-
-
             string fileNameSave = Path.GetFileNameWithoutExtension(fileUpload.FileName) + DateTime.Now.ToString("yyyy.MM.dd.HH.mm.ss") + Path.GetExtension(fileUpload.FileName);
 
 
