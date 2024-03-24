@@ -27,7 +27,7 @@ namespace TimeTable_Project.Pages.Room
                 return NotFound();
             }
 
-            var room = await _context.Rooms.FirstOrDefaultAsync(m => m.Id == id);
+            var room = await _context.Rooms.Include(r => r.Building).FirstOrDefaultAsync(m => m.Id == id);
             if (room == null)
             {
                 return NotFound();
