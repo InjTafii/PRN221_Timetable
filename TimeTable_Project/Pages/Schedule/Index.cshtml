@@ -4,57 +4,88 @@
 @{
     ViewData["Title"] = "Schedule";
 }
+<style>
+    
+</style>
+<div class="container">
+    <h1>Schedule</h1>
 
-<h1>Schedule</h1>
+    <p>
+        <a asp-page="Create" class="btn btn-primary">Create New</a>
+    </p>
 
-<p>
-    <a asp-page="Create" class="btn btn-primary">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Classes[0].Code)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Teachers[0].Code)
-            </th>
-            <th>
-                Subject Code
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Slots[0].SlotName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Buildings[0].Code)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.schedules)
-        {
+    <table class="table table-bordered table-hover">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Class.Code) 
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Teacher.Code) 
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Subject.Code)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Slot.SlotName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Room.Building.Code)-@Html.DisplayFor(modelItem => item.Room.Code)
-                </td>
-                <td>
-                    <a asp-page="./Edit" asp-route-id="@item.Id" class="btn btn-success">Edit</a> ||
-                    <a asp-page="./Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.Classes[0].Code)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Teachers[0].Code)
+                </th>
+                <th>
+                    Subject Code
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Slots[0].SlotName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Buildings[0].Code)
+                </th>
+                <th>
+                    Actions
+                </th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.schedules)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Class.Code)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Teacher.Code)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Subject.Code)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Slot.SlotName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Room.Building.Code) - @Html.DisplayFor(modelItem => item.Room.Code)
+                    </td>
+                    <td>
+                        <div class="d-flex justify-content-between">
+                            <a asp-page="./Edit" asp-route-id="@item.Id" class="btn btn-sm btn-primary">Edit</a>
+                            <form method="post" asp-page-handler="Delete" onsubmit="return confirm('Are you sure you want to delete?');">
+                                <button type="submit" name="ScheduleId" value="@item.Id" class="btn btn-sm btn-danger">Delete</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+    @if (Model.TotalPage > 1)
+{
+    <form method="get">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    @for (int i = 1; i < Model.TotalPage; i++)
+            @if (i == Model.PageIndex)
+            {
+                <button type="submit" name="pageindex" value="@i" style=" font-size:1.5em; font-weight:bold">@i</button>
+            }
+            else
+            {
+                <button type="submit" name="pageindex" value="@i">@i</button>
+            }
+                </ul>
+            </nav>
+
+        </form>
+}

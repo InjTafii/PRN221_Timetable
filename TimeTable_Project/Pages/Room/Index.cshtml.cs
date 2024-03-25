@@ -11,21 +11,32 @@ namespace TimeTable_Project.Pages.Room
 {
     public class IndexModel : PageModel
     {
-        private readonly TimeTable_Project.Models.ScheduleManagementContext _context;
+        private readonly ScheduleManagementContext _context;
 
-        public IndexModel(TimeTable_Project.Models.ScheduleManagementContext context)
+        public IndexModel(ScheduleManagementContext context)
         {
             _context = context;
         }
 
         public IList<Models.Room> Room { get;set; } = default!;
-
+        public int BuildingId { get; set; }
+        public IList<Models.Building> AvailableBuildings { get; set; } = default!;
         public async Task OnGetAsync()
         {
-            if (_context.Rooms != null)
+            AvailableBuildings = await _context.Buildings.ToListAsync();
+
+            if (BuildingId > 0)
             {
                 Room = await _context.Rooms
-                .Include(r => r.Building).ToListAsync();
+                  .Include(r => r.Building)
+                  .Where(r => r.BuildingId == BuildingId)
+                  .ToListAsync();
+            }
+            else
+            {
+                Room = await _context.Rooms
+                  .Include(r => r.Building)
+                  .ToListAsync();
             }
         }
     }

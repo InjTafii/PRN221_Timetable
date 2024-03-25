@@ -1,0 +1,97 @@
+﻿@page
+@model TimeTable_Project.Pages.Schedule.CreateModel
+@{
+}
+@{
+    ViewData["Title"] = "Create Schedule";
+}
+<h4>Create new schedule</h4>
+<div class="container">
+
+    <form method="post" class="needs-validation" id="editForm">
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label>Class: </label>
+                <select asp-for="CSVData.Class" id="SelectClass" class="form-control">
+                    @foreach (var s in Model.Classes)
+                    {
+                        <option value="@s.Code">@s.Code</option>
+                    }
+                </select>
+                <div class="invalid-feedback">Please select a class.</div>
+            </div>
+
+            <div class="form-group col-md-6">
+                <label>Subject: </label>
+                <select asp-for="CSVData.Subject" id="SelectSubject" class="form-control">
+                    @foreach (var s in Model.Subjects)
+                    {
+                        <option value="@s.Code">@s.Code</option>
+                    }
+                </select>
+                <div class="invalid-feedback">Please select a subject.</div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="SelectTeacher">Teacher</label>
+                <select asp-for="CSVData.Teacher" id="SelectTeacher" class="form-control">
+                    @foreach (var s in Model.Teachers)
+                    {
+                        <option value="@s.Code">@s.Code</option>
+                    }
+                </select>
+                <div class="invalid-feedback">Please select a teacher.</div>
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="SelectRoom">Room</label>
+                <select asp-for="CSVData.Room" id="SelectRoom" class="form-control">
+                    @foreach (var s in Model.Rooms)
+                    {
+                        <option value="@s.room">@s.room</option>
+                    }
+                </select>
+                <div class="invalid-feedback">Please select a room.</div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="SelectSlot">Time Slot</label>
+                <select asp-for="CSVData.TimeSlot" id="SelectSlot" class="form-control">
+                    @foreach (var s in Model.Slots)
+                    {
+                        <option value="@s.SlotName">@s.SlotName</option>
+                    }
+                </select>
+                <div class="invalid-feedback">Please select a time slot.</div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Create</button>
+    </form>
+
+    <div>
+        <a asp-page="./Index">Back to List</a>
+    </div>
+
+    <div>
+        @if (ViewData["Messages"] != null)
+        {
+            <h2>Results:</h2>
+            <ul>
+                @if (ViewData["Messages"] == "Saved successfully!")
+                {
+                    <p style="color:forestgreen">@ViewData["Messages"]</p>
+                }
+                else
+                {
+                    <p style="color:red">@ViewData["Messages"]</p>
+                }
+            </ul>
+        }
+    </div>
+</div>

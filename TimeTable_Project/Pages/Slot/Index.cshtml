@@ -4,39 +4,55 @@
 @{
     ViewData["Title"] = "Index";
 }
+<style>
+    /* Cải thiện đường viền của button */
+    .btn {
+        border-radius: 0.25rem;
+    }
 
-<h1>Slot List</h1>
+    /* Tăng khoảng cách giữa các hàng */
+    .table tbody tr {
+        margin-bottom: 0.5rem;
+    }
+
+</style>
+<h1 class="mt-5 mb-4">Slot List</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a class="btn btn-primary" asp-page="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Slot[0].Details)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Slot[0].SlotName)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.Slot) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Details)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SlotName)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead class="bg-primary text-white">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Slot[0].Details)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Slot[0].SlotName)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Slot)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Details)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SlotName)
+                    </td>
+                    <td>
+                        <div class="btn-group" role="group">
+                            <a class="btn btn-info btn-sm" asp-page="./Edit" asp-route-id="@item.Id">Edit</a>
+                            <a class="btn btn-secondary btn-sm" asp-page="./Details" asp-route-id="@item.Id">Details</a>
+                            <a class="btn btn-danger btn-sm" asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -2,41 +2,60 @@
 @model TimeTable_Project.Pages.Room.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Room List";
 }
 
-<h1>Room List</h1>
+<div class="container">
+    <h1>Room List</h1>
+    <div class="form-group">
+        <label for="buildingFilter">Filter by Building:</label>
+        <select id="buildingFilter" asp-for="BuildingId" asp-items="@(new SelectList(Model.AvailableBuildings, "Id", "Code"))" onchange="this.form.submit()"></select>
+    </div>
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Room[0].Code)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Room[0].Building)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.Room) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Code)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Building.Code)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    <p>
+        <a asp-page="Create" class="btn btn-primary">Create New</a>
+    </p>
+
+
+
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Room[0].Code)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Room[0].Building)
+                </th>
+                <th>
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Room)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Code)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Building.Code)
+                    </td>
+                    <td>
+                        <div class="dropdown">
+                            <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Actions
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" asp-page="./Edit" asp-route-id="@item.Id">Edit</a>
+                                <a class="dropdown-item" asp-page="./Details" asp-route-id="@item.Id">Details</a>
+                                <a class="dropdown-item" asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

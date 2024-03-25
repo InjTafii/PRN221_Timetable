@@ -12,7 +12,23 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/popper.js/dist/umd/popper.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <style>
+        .navbar-nav .nav-item .nav-link:hover {
+            color: #007bff; /* Đổi màu chữ khi hover */
+        }
 
+        /* Thêm padding và margin */
+        .navbar-nav .nav-item .nav-link {
+            padding: 0.5rem 1rem; /* Thêm padding */
+            margin-right: 0.5rem; /* Thêm margin */
+        }
+
+        /* Đảo ngược màu chữ và màu nền của navbar khi hover */
+        .navbar-light .navbar-nav .nav-link:hover {
+            color: #fff; /* Màu chữ */
+            background-color: #007bff; /* Màu nền */
+        }
+    </style>
 </head>
 <body>
     <header>
