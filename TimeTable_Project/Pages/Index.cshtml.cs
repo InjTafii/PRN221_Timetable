@@ -22,7 +22,7 @@ namespace TimeTable_Project.Pages
         public string ClassCodeSelected { get; set; }
 
         [BindProperty]
-        public Models.Schedule[,] Data { get; set; } = new TimeTable_Project.Models.Schedule[4, 7];
+        public List<Models.Schedule>[,] Data { get; set; } = new List<Models.Schedule>[4, 7];
 
         public IndexModel(ILogger<IndexModel> logger, ScheduleManagementContext context, ValidationService validationService)
         {
@@ -35,7 +35,19 @@ namespace TimeTable_Project.Pages
         {
             try
             {
+                for (int i = 0; i < 4; i++)
+                {
+                    for (int j = 0; j < 7; j++)
+                    {
+                        
+                        Data[i, j] = new List<Models.Schedule>();
+                    }
+                }
                 await GetDataAsync();
+                if(ClassCodeSelected == "0")
+                {
+                    ClassCodeSelected = null;
+                }
                 List<Models.Schedule> schedules = ClassCodeSelected == null ? _context.Schedules.Include(s => s.Slot).Include(s => s.Teacher).Include(s => s.Subject).Include(s => s.Class).Include(s => s.Room).ThenInclude(r => r.Building).ToList()
                                                     : _context.Schedules.Include(s => s.Slot).Include(s => s.Teacher).Include(s => s.Subject).Include(s => s.Class).Include(s => s.Room).ThenInclude(r => r.Building).Where(x => x.Class.Code == ClassCodeSelected).ToList();
                 foreach (var item in schedules)
@@ -44,15 +56,15 @@ namespace TimeTable_Project.Pages
                     {
                         int daySlot1 = Int32.Parse(item.Slot.SlotName[1].ToString());
                         int daySlot2 = Int32.Parse(item.Slot.SlotName[2].ToString());
-                        Data[0, daySlot1 - 2] = item;
-                        Data[1, daySlot2 - 2] = item;
+                        Data[0, daySlot1 - 2].Add(item);
+                        Data[1, daySlot2 - 2].Add(item);
                     }
                     else if (item.Slot.SlotName[0] == 'P')
                     {
                         int daySlot1 = Int32.Parse(item.Slot.SlotName[1].ToString());
                         int daySlot2 = Int32.Parse(item.Slot.SlotName[2].ToString());
-                        Data[2, daySlot1 - 2] = item;
-                        Data[3, daySlot2 - 2] = item;
+                        Data[2, daySlot1 - 2].Add(item);
+                        Data[3, daySlot2 - 2].Add(item);
                     }
 
                 }

@@ -12,20 +12,28 @@ namespace TimeTable_Project.Pages.Schedule
     public class IndexModel : PageModel
     {
         private readonly TimeTable_Project.Models.ScheduleManagementContext _context;
-
+        [BindProperty]
+        public int ScheduleId { get; set; }
+        public List<Models.Class> Classes { get; set; }
+        public Models.Schedule Schedule { get; set; }
+        public List<Models.Subject> Subjects { get; set; }
+        public List<Models.Teacher> Teachers { get; set; }
+        public List<Models.Slot> Slots { get; set; }
+        public List<Models.Building> Buildings { get; set; }
         public IndexModel(TimeTable_Project.Models.ScheduleManagementContext context)
         {
             _context = context;
         }
 
-        public IList<Models.Class> GrClass { get; set; } = default!;
+        public List<Models.Schedule> schedules { get; set; } = default!;
 
-        public async Task OnGetAsync()
+        public void OnGet(int id)
         {
-            if (_context.Classes != null)
+            if (_context.Schedules != null)
             {
-                GrClass = await _context.Classes.ToListAsync();
+                schedules = _context.Schedules.Include(s => s.Class).Include(s => s.Subject).Include(s => s.Teacher).Include(s => s.Slot).Include(s => s.Room).ThenInclude(r => r.Building).ToList();
             }
+
         }
     }
 }

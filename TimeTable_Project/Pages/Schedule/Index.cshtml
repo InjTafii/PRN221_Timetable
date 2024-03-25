@@ -1,5 +1,5 @@
 ﻿@page
-@model TimeTable_Project.Pages.Class.IndexModel
+@model TimeTable_Project.Pages.Schedule.IndexModel
 
 @{
     ViewData["Title"] = "Schedule";
@@ -14,21 +14,44 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.GrClass[0].Code)
+                @Html.DisplayNameFor(model => model.Classes[0].Code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Teachers[0].Code)
+            </th>
+            <th>
+                Subject Code
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Slots[0].SlotName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Buildings[0].Code)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.GrClass)
+        @foreach (var item in Model.schedules)
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Code)
+                    @Html.DisplayFor(modelItem => item.Class.Code) 
                 </td>
                 <td>
-                    <a asp-page="./Edit" asp-route-id="@item.Id" class="btn btn-success">Edit</a> |
-                    <a asp-page="./Details" asp-route-id="@item.Id" class="btn btn-warning">Details</a> |
+                    @Html.DisplayFor(modelItem => item.Teacher.Code) 
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Subject.Code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Slot.SlotName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Room.Building.Code)-@Html.DisplayFor(modelItem => item.Room.Code)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id" class="btn btn-success">Edit</a> ||
                     <a asp-page="./Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
                 </td>
             </tr>

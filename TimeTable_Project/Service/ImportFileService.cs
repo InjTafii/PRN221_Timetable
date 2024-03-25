@@ -72,16 +72,8 @@ namespace TimeTable_Project.Service
                 {
                     return message;
                 }
-                try
-                {
                     _context.Schedules.Add(scheduleDTO);
-                   
                     _context.SaveChanges();
-                }
-                catch (Exception ex)
-                {
-                    return FindConstraintError(scheduleDTO);
-                }
             }
             else
             {
@@ -115,27 +107,7 @@ namespace TimeTable_Project.Service
         {
             ValidationService validationService = new ValidationService(_context);
 
-            return validationService.CheckClassAndSubjectAll(schedule);
+            return validationService.ValidateSchedule(schedule,0);
         }
-
-        public string FindConstraintError(Schedule schedule)
-        {
-            ValidationService validationService = new ValidationService(_context);
-            string message;
-            message = validationService.CheckSlotAndRoom(schedule);
-            if (message != "") return message;
-
-            message = validationService.CheckSlotAndTeacher(schedule);
-            if (message != "") return message;
-
-            message = validationService.CheckSlotAndClass(schedule);
-            if (message != "") return message;
-
-            message = validationService.CheckClassAndSubject(schedule);
-            if (message != "") return message;
-
-            return "";
-        }
-
     }
 }
